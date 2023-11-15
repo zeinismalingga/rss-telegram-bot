@@ -19,7 +19,7 @@ chat_id = '1066141419'
 last_entry_info_file = 'last_entry_info.json'
 
 try:
-    with open(join('data', last_entry_info_file), 'r') as file:
+    with open(join('tmp', last_entry_info_file), 'r') as file:
         last_entry_info = json.load(file)
 except (FileNotFoundError, json.JSONDecodeError):
     # If the file doesn't exist or is corrupted, initialize with an empty dictionary
@@ -68,7 +68,7 @@ def run_bot():
                 last_entry_info[rss_feed_url] = title
 
     # Save the updated last entry information
-    with open(join('data', last_entry_info_file), 'w') as file:
+    with open(join('tmp', last_entry_info_file), 'w') as file:
         json.dump(last_entry_info, file, indent=2)
 
     return jsonify({'status': 'success', 'message': 'Bot script executed successfully.'})
